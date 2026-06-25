@@ -1,0 +1,274 @@
+Step 03 Evidence Wording Polish Review Bundle
+=============================================
+
+Project: three-papers-skill
+Repository: https://github.com/jiali-labs/three-papers-skill.git
+Bundle path: review-bundles/step-03-evidence-wording-polish-review-bundle.txt
+
+1. Summary of changes
+---------------------
+
+Polished user-facing evidence wording so internal evidence levels remain available for reasoning, but final answers should not expose "Level 1", "Level 2", "Level 3", or "Level 4" labels to beginner users.
+
+Changed:
+
+- SKILL.md
+  - Kept the internal Level 1/2/3/4 hierarchy.
+  - Added a clear rule that Level labels are internal-only.
+  - Replaced visible "信息依据" examples with natural Chinese wording.
+
+- tests/test-cases.md
+  - Added a shared failure condition for user-visible output that directly exposes internal evidence labels.
+
+Not changed:
+
+- examples/simulated-outputs.md
+  - Inspected and checked. It already used natural Chinese "信息依据" wording and did not expose Level labels.
+
+- .gitignore
+  - Already contained `.DS_Store`, so no change was needed.
+
+No commit was created and nothing was pushed.
+
+2. Final file tree
+------------------
+
+Project files:
+
+three-papers-skill/
+  .gitignore
+  SKILL.md
+  README.md
+  examples/
+    simulated-outputs.md
+  tests/
+    test-cases.md
+  review-bundles/
+    step-01-initial-skill-review-bundle.txt
+    step-02-simulated-outputs-review-bundle.txt
+    step-03-evidence-wording-polish-review-bundle.txt
+
+Additional local files observed:
+
+- .DS_Store exists locally but is ignored by `.gitignore`.
+- .agents/ is present as an untracked local directory and was not touched.
+
+3. Git status
+-------------
+
+Status observed before creating this review bundle:
+
+## main...origin/main
+ M SKILL.md
+ M tests/test-cases.md
+?? .agents/
+
+Expected status after this review bundle is added:
+
+## main...origin/main
+ M SKILL.md
+ M tests/test-cases.md
+?? .agents/
+?? review-bundles/step-03-evidence-wording-polish-review-bundle.txt
+
+Important note:
+
+- `.DS_Store` does not appear in git status because `.gitignore` already ignores it.
+
+4. Exact commands run
+---------------------
+
+Commands run in /Users/jia/Code/three-papers-skill unless noted otherwise:
+
+1. sed -n '1,260p' /Users/jia/.codex/skills/.system/skill-creator/SKILL.md
+2. git status --short --branch
+3. find . -maxdepth 3 -type f -not -path './.git/*' -print
+4. test -f .gitignore && sed -n '1,120p' .gitignore || true
+5. sed -n '100,150p' SKILL.md
+6. sed -n '1,220p' tests/test-cases.md
+7. rg -n "Level 1|Level 2|Level 3|Level 4" examples/simulated-outputs.md SKILL.md tests/test-cases.md
+8. find .agents -maxdepth 3 -type f -print
+9. apply_patch
+   - Updated SKILL.md.
+   - Updated tests/test-cases.md.
+10. git status --short --branch
+11. rg -n "Level 1|Level 2|Level 3|Level 4" SKILL.md
+12. rg -n "只用于内部判断|不要在用户可见输出中直接出现|用户可见的「信息依据」" SKILL.md
+13. rg -n "用户可见输出中直接出现|内部证据分级" tests/test-cases.md
+14. rg -n "Level 1|Level 2|Level 3|Level 4" examples/simulated-outputs.md
+    - Result: no matches.
+15. rg -n "TODO|FIXME|TBD|待补|占位|lorem" SKILL.md README.md tests/test-cases.md examples/simulated-outputs.md
+    - Result: no matches.
+16. git diff -- SKILL.md tests/test-cases.md examples/simulated-outputs.md .gitignore
+17. find . -maxdepth 3 -type f -not -path './.git/*' -print
+18. git status --short --branch
+19. git diff --stat
+20. apply_patch
+    - Created this review bundle.
+
+5. .gitignore status
+--------------------
+
+`.gitignore` was not added or updated in this step.
+
+Reason:
+
+- `.gitignore` already exists.
+- It already contains:
+
+```text
+.DS_Store
+```
+
+Check result:
+
+- `git status --short --branch` does not list `.DS_Store`.
+
+6. Evidence wording rule added to SKILL.md
+------------------------------------------
+
+Added rule:
+
+```markdown
+证据分级 Level 1/2/3/4 只用于内部判断，不要在用户可见输出中直接出现「Level 1」「Level 2」「Level 3」「Level 4」等字样。
+
+每篇论文必须包含「信息依据」字段。用户可见的「信息依据」必须使用自然语言说明，例如：
+
+- 信息依据：已核验公开论文页面，未逐段精读全文。
+- 信息依据：基于论文摘要、公开元信息和领域影响整理，未展开具体实验细节。
+- 信息依据：仅核验到标题、作者、年份和来源，因此只做入门定位，不展开论文细节。
+```
+
+The internal evidence hierarchy remains in SKILL.md:
+
+```markdown
+- Level 1：可访问论文全文、PDF、arXiv 页面、官方会议页或出版社页。可以较高置信讨论论文。
+- Level 2：可访问摘要和可靠元信息。可以推荐，但要说明基于摘要、公开元信息和领域影响。
+- Level 3：只能确认标题、作者、年份、来源等基础信息。只能谨慎提及，避免展开细节。
+- Level 4：标题、作者、年份或来源无法可靠确认。不要放进最终 3 篇。
+```
+
+7. Test coverage updates
+------------------------
+
+Added to the shared failure conditions in tests/test-cases.md:
+
+```markdown
+- 用户可见输出中直接出现 “Level 1”“Level 2”“Level 3”“Level 4”等内部证据分级字样。
+```
+
+This makes the internal-label leakage rule apply across all manual test cases.
+
+8. Whether simulated outputs were changed
+-----------------------------------------
+
+No changes were made to examples/simulated-outputs.md.
+
+Reason:
+
+- The simulated examples already used natural Chinese wording under "信息依据".
+- The examples did not contain user-facing "Level 1", "Level 2", "Level 3", or "Level 4" labels.
+- Paper selections did not need to change.
+
+9. Search/check results
+-----------------------
+
+Internal hierarchy still present in SKILL.md:
+
+```text
+117:- Level 1：可访问论文全文、PDF、arXiv 页面、官方会议页或出版社页。可以较高置信讨论论文。
+118:- Level 2：可访问摘要和可靠元信息。可以推荐，但要说明基于摘要、公开元信息和领域影响。
+119:- Level 3：只能确认标题、作者、年份、来源等基础信息。只能谨慎提及，避免展开细节。
+120:- Level 4：标题、作者、年份或来源无法可靠确认。不要放进最终 3 篇。
+122:证据分级 Level 1/2/3/4 只用于内部判断，不要在用户可见输出中直接出现「Level 1」「Level 2」「Level 3」「Level 4」等字样。
+```
+
+New internal-only / natural wording rule present:
+
+```text
+122:证据分级 Level 1/2/3/4 只用于内部判断，不要在用户可见输出中直接出现「Level 1」「Level 2」「Level 3」「Level 4」等字样。
+124:每篇论文必须包含「信息依据」字段。用户可见的「信息依据」必须使用自然语言说明，例如：
+```
+
+Test failure condition present:
+
+```text
+161:- 用户可见输出中直接出现 “Level 1”“Level 2”“Level 3”“Level 4”等内部证据分级字样。
+```
+
+Examples do not expose user-facing Level labels:
+
+```text
+Command: rg -n "Level 1|Level 2|Level 3|Level 4" examples/simulated-outputs.md
+Result: no matches.
+```
+
+Placeholder scan:
+
+```text
+Command: rg -n "TODO|FIXME|TBD|待补|占位|lorem" SKILL.md README.md tests/test-cases.md examples/simulated-outputs.md
+Result: no matches.
+```
+
+Git status did not include `.DS_Store`:
+
+```text
+## main...origin/main
+ M SKILL.md
+ M tests/test-cases.md
+?? .agents/
+```
+
+10. Known limitations
+---------------------
+
+- These are manual documentation/test updates only; no automated linter or test runner was added.
+- The review bundle itself includes Level labels for review context, but the user-facing examples do not.
+- `.agents/` remains an unrelated untracked local directory.
+- No commit or push was performed.
+
+11. Open questions for reviewer
+-------------------------------
+
+- Should README.md also explicitly mention that Level labels are internal-only, or is keeping this rule in SKILL.md and tests enough?
+- Should future automated checks scan generated outputs for internal-only labels?
+- Should review bundles be added to `.gitignore` in the future, or kept as committed review artifacts?
+
+12. Diff / excerpts for review
+------------------------------
+
+Full relevant diff:
+
+```diff
+diff --git a/SKILL.md b/SKILL.md
+index 6afcb9a..90ed5a4 100644
+--- a/SKILL.md
++++ b/SKILL.md
+@@ -119,11 +119,13 @@ description: 输入一个新领域或方向时，用中文为小红书/中文用
+ - Level 3：只能确认标题、作者、年份、来源等基础信息。只能谨慎提及，避免展开细节。
+ - Level 4：标题、作者、年份或来源无法可靠确认。不要放进最终 3 篇。
+ 
+-每篇论文必须包含「信息依据」字段，可用以下写法：
++证据分级 Level 1/2/3/4 只用于内部判断，不要在用户可见输出中直接出现「Level 1」「Level 2」「Level 3」「Level 4」等字样。
+ 
+-- 信息依据：基于论文原文 / arXiv 页面 / 官方会议页面
+-- 信息依据：基于摘要、公开元信息和该论文在领域中的广泛影响
+-- 信息依据：未读取全文，仅基于可靠公开元信息，以下不展开实验细节
++每篇论文必须包含「信息依据」字段。用户可见的「信息依据」必须使用自然语言说明，例如：
++
++- 信息依据：已核验公开论文页面，未逐段精读全文。
++- 信息依据：基于论文摘要、公开元信息和领域影响整理，未展开具体实验细节。
++- 信息依据：仅核验到标题、作者、年份和来源，因此只做入门定位，不展开论文细节。
+ 
+ 严格禁止：
+ 
+diff --git a/tests/test-cases.md b/tests/test-cases.md
+index cc444fb..b02515c 100644
+--- a/tests/test-cases.md
++++ b/tests/test-cases.md
+@@ -158,3 +158,4 @@ Failure conditions：
+ - 没有进行领域模式判断。
+ - 3 篇论文之间没有连贯主线。
+ - 没有说明这 3 篇共同建立的认知框架。
++- 用户可见输出中直接出现 “Level 1”“Level 2”“Level 3”“Level 4”等内部证据分级字样。
+```
