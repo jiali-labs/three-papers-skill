@@ -1,0 +1,335 @@
+Step 01 Initial Skill Review Bundle
+===================================
+
+Project: three-papers-skill
+Skill name: 三篇论文入门
+Bundle path: review-bundles/step-01-initial-skill-review-bundle.txt
+
+1. Summary of what was created
+------------------------------
+
+Created a Chinese-first Codex Skill MVP for recommending 3 classic or representative papers that help beginner Chinese/Xiaohongshu users build an initial cognitive framework for a new field.
+
+Created:
+
+- SKILL.md
+- README.md
+- tests/test-cases.md
+- review-bundles/step-01-initial-skill-review-bundle.txt
+
+Git was initialized locally in /Users/jia/Code/three-papers-skill.
+
+No remote was added because `git remote -v` returned no configured remote URL and no GitHub remote URL was available in the local project context.
+
+No commit was created.
+
+2. Final file tree
+------------------
+
+Expected final tree:
+
+three-papers-skill/
+  .git/
+  SKILL.md
+  README.md
+  tests/
+    test-cases.md
+  review-bundles/
+    step-01-initial-skill-review-bundle.txt
+
+3. Git status
+-------------
+
+Expected final status after this bundle is present:
+
+## No commits yet on main
+?? README.md
+?? SKILL.md
+?? review-bundles/
+?? tests/
+
+4. Key contents summary
+-----------------------
+
+SKILL.md:
+
+- Defines the Skill metadata:
+  - name: three-papers-skill
+  - description: Chinese-first paper recommendation skill for beginners.
+- Implements four field judgment modes:
+  - Mode A: high-confidence research field.
+  - Mode B: broad or multi-branch field requiring narrowing.
+  - Mode C: emerging field where canon is not fully settled.
+  - Mode D: not suitable for paper-first learning.
+- Defines paper selection principles based on cognitive framework value, not citation count or recency alone.
+- Requires 3 papers to form a coherent learning mainline.
+- Requires evidence disclosure for each paper via "信息依据".
+- Defines evidence levels from full paper available to not reliably verifiable.
+- Includes strict anti-hallucination rules:
+  - do not fabricate links;
+  - do not fabricate authors, venues, results, sections, tables, or claims;
+  - do not pretend to have read a full paper;
+  - replace insufficiently verifiable papers.
+- Provides Chinese output templates for suitable and unsuitable topics.
+
+README.md:
+
+- Chinese-first user/project documentation.
+- Explains target users: Chinese/Xiaohongshu beginners who want a first cognitive framework for a new field.
+- Explains what the Skill does and does not do.
+- Lists example inputs.
+- Documents output structure.
+- Documents evidence and anti-hallucination policy.
+- Lists MVP limitations and future improvements.
+
+tests/test-cases.md:
+
+- Contains 7 manual tests, exceeding the minimum 6 required.
+- Covers:
+  - 大语言模型: Mode A
+  - AI Agent: Mode C
+  - 新能源汽车: Mode B
+  - 小红书运营: Mode D
+  - 推荐系统: Mode A
+  - AI: Mode B
+  - 金融: Mode B
+- Each case includes input, expected mode, expected behavior, and failure conditions.
+- Failure conditions include hallucinated links, pretending to have read full papers, unrelated recommendations, and forcing papers for practice-first topics.
+
+5. Exact commands run
+---------------------
+
+Commands run in /Users/jia/Code/three-papers-skill unless noted otherwise:
+
+1. pwd
+2. rg --files -uu
+3. git status --short --branch
+   - Result: failed because the directory was not yet a git repository.
+4. git init
+   - First attempt failed with ".git: Operation not permitted" due to sandbox restriction.
+5. mkdir -p tests review-bundles
+6. git init
+   - Rerun with escalated permission because git needed to create .git metadata.
+   - Result: initialized empty Git repository.
+7. git remote -v
+   - Result: no output, so no remote was configured.
+8. sed -n '1,240p' /Users/jia/.codex/skills/.system/skill-creator/SKILL.md
+   - Used because this task is a Skill creation task.
+9. apply_patch
+   - Created SKILL.md, README.md, and tests/test-cases.md.
+10. find . -maxdepth 3 -type f -not -path './.git/*' -print
+11. git status --short --branch
+12. command -v markdownlint
+    - Result: no markdownlint executable found.
+13. rg -n "Mode A|Mode B|Mode C|Mode D|信息依据|不要编造|小红书运营|AI Agent|大语言模型" SKILL.md README.md tests/test-cases.md
+14. rg -n "TODO|FIXME|TBD|待补|占位|lorem" SKILL.md README.md tests/test-cases.md
+    - Result: no matches.
+15. wc -l SKILL.md README.md tests/test-cases.md
+    - Result:
+      - 206 SKILL.md
+      - 91 README.md
+      - 160 tests/test-cases.md
+      - 457 total
+16. git diff -- SKILL.md README.md tests/test-cases.md
+    - Result: no output because files are untracked.
+17. apply_patch
+    - Created this review bundle.
+
+6. Self-test results
+--------------------
+
+Self-test 1: Review SKILL.md for consistency with product logic.
+
+Result: Passed.
+
+Evidence:
+
+- SKILL.md includes Mode A/B/C/D behavior.
+- Broad fields are required to narrow before recommending.
+- Emerging fields are required to avoid claiming "公认经典".
+- Practical/commercial topics are required to avoid forced academic recommendations.
+- Paper recommendations must form a coherent mainline.
+- Every paper must include "信息依据".
+- Evidence levels and anti-hallucination rules are explicit.
+
+Self-test 2: Review README.md for clarity and Chinese-first positioning.
+
+Result: Passed.
+
+Evidence:
+
+- README is Chinese-first.
+- It states target users, what the Skill does, what it does not do, example inputs, output structure, evidence policy, MVP limitations, and future improvements.
+
+Self-test 3: Review tests/test-cases.md for coverage.
+
+Result: Passed.
+
+Evidence:
+
+- Includes all six required manual test categories plus one extra case for "金融".
+- Each case includes input, expected mode, expected behavior, and failure conditions.
+
+Self-test 4: Markdown linting or basic file checks.
+
+Result: Partial pass.
+
+- `markdownlint` was not installed locally, so no markdownlint run was performed.
+- Basic checks were run instead:
+  - required file presence via `find`;
+  - required phrase coverage via `rg`;
+  - placeholder scan via `rg`;
+  - line counts via `wc -l`.
+- Placeholder scan found no TODO/FIXME/TBD/占位/lorem markers.
+
+7. Simulated test results
+-------------------------
+
+Simulation A: input "大语言模型"
+
+Expected Skill decision:
+
+- Mode A: high-confidence research field.
+- The Skill should directly recommend 3 verifiable classic/representative papers.
+- It should not fabricate paper data.
+- If web/source access is unavailable, it should either use only reliably known and verifiable context or refuse to finalize the list until verification is possible.
+
+Expected output behavior:
+
+- "领域判断" should say the field has a clear research tradition.
+- "推荐逻辑" should state the list is not a full survey or only correct answer.
+- Reading order should form a mainline, likely around architecture, pretraining/scaling, and instruction/alignment or large-model paradigm.
+- Each paper must include "信息依据".
+
+Simulation result: Passed by rule inspection. The Skill contains these requirements.
+
+Simulation B: input "AI Agent"
+
+Expected Skill decision:
+
+- Mode C: emerging/fast-moving field.
+- The Skill must say the canon is not fully settled.
+- It may recommend 3 representative papers, but must not overclaim "公认经典".
+
+Expected output behavior:
+
+- "领域判断" should include wording equivalent to:
+  "这个方向还在快速发展中，严格意义上的公认经典还没有完全沉淀。"
+- It should focus on a current cognitive framework, such as tool use, planning, memory, evaluation, or multi-agent patterns.
+- Each paper must include "信息依据".
+
+Simulation result: Passed by rule inspection. The Skill contains the required Mode C wording and constraints.
+
+Simulation C: input "小红书运营"
+
+Expected Skill decision:
+
+- Mode D: not suitable for paper-first learning.
+- The Skill should not force 3 academic papers.
+
+Expected output behavior:
+
+- It should explain the topic is more practical/commercial/operational.
+- It should suggest academic/technical reformulations, such as:
+  1. 社交推荐系统如何影响内容分发？
+  2. UGC 社区中的用户行为和内容生产机制是什么？
+  3. 内容平台增长和创作者生态可以如何研究？
+- It should suggest practice-first materials such as books, case studies, industry reports, and practical courses.
+
+Simulation result: Passed by rule inspection. The Skill contains the required Mode D branch and output template.
+
+8. Known limitations
+--------------------
+
+- No automated retrieval or source-verification script is included in this MVP.
+- The Skill depends on the using agent's available web/search/database access at runtime.
+- No full paper recommendations were generated during self-test because the requested self-test allowed mode/anti-hallucination simulation when web access is unavailable.
+- `markdownlint` was not available locally, so markdown validation was limited to basic file and text checks.
+- The skill-creator guide generally discourages README files inside Skill packages, but README.md was included because the user explicitly required it.
+- No GitHub remote was added because no remote URL was available locally.
+
+9. Open questions for reviewer
+------------------------------
+
+- Should future versions include a curated candidate pool for common fields, or should every recommendation rely on fresh source verification?
+- Should there be a shorter "小红书卡片版" output mode for social posting?
+- Should the Skill include optional user-background branches, such as product manager, engineer, investor, or graduate student?
+- Should an automated test script be added to validate outputs for required sections and forbidden claims?
+
+10. File excerpts for review
+----------------------------
+
+SKILL.md key excerpt:
+
+```markdown
+# 三篇论文入门
+
+你是「三篇论文入门」助手。你的任务不是做完整综述，而是在用户输入一个新领域、技术方向或研究问题后，推荐 3 篇最适合小白建立第一版认知框架的经典或代表性论文。
+
+默认用户画像：没有专业背景、但愿意认真学习。输出以中文为主；论文标题、作者、会议/期刊、数据库名、英文术语可保留英文。
+
+## 领域判断模式
+
+### Mode A：高置信研究领域
+
+适用于已有清晰学术传统、经典论文较稳定的领域。直接推荐 3 篇论文。
+
+### Mode B：过宽或多分支领域
+
+适用于范围太大、直接推荐 3 篇会失焦的输入。必须先收窄学习主线，再推荐。
+
+### Mode C：快速发展/经典尚未完全沉淀
+
+适用于新方向或范式仍在快速变化的领域。可以推荐 3 篇代表性论文，但不能说它们是「公认经典」。
+
+### Mode D：不适合论文优先
+
+适用于主要是实践、商业、运营、个人成长或方法论的主题。不要强行推荐 3 篇学术论文。
+```
+
+SKILL.md evidence excerpt:
+
+```markdown
+证据分级：
+
+- Level 1：可访问论文全文、PDF、arXiv 页面、官方会议页或出版社页。可以较高置信讨论论文。
+- Level 2：可访问摘要和可靠元信息。可以推荐，但要说明基于摘要、公开元信息和领域影响。
+- Level 3：只能确认标题、作者、年份、来源等基础信息。只能谨慎提及，避免展开细节。
+- Level 4：标题、作者、年份或来源无法可靠确认。不要放进最终 3 篇。
+
+严格禁止：
+
+- 不要假装读过全文。
+- 不要编造链接。
+- 不要编造作者、年份、会议、实验结果、章节、表格或结论。
+- 不要在证据不足时讲具体实验细节。
+```
+
+README.md key excerpt:
+
+```markdown
+一句话介绍：输入一个新领域，推荐 3 篇帮助小白建立认知框架的经典论文。
+
+## 目标用户
+
+这个 Skill 面向中文用户，尤其是小红书上想快速理解一个新领域、但还不知道从哪里开始读论文的新手。
+
+默认用户画像：没有专业背景，但愿意认真学习；希望先搭建「第一版认知框架」，而不是立刻做完整文献综述。
+```
+
+tests/test-cases.md key excerpt:
+
+```markdown
+## 4. 小红书运营
+
+输入：小红书运营
+
+Expected mode：Mode D，不适合论文优先。
+
+Expected behavior：
+
+- 明确说明这是实践运营/商业方法论主题，不太适合用 3 篇经典论文建立认知框架。
+- 不强行推荐 3 篇学术论文。
+- 给出 3 个更学术或技术化的改写方向，例如社交推荐系统、内容社区增长机制、UGC 平台用户行为研究。
+- 如果目标是实践入门，建议看书籍、案例拆解、行业报告、实操课程等。
+```
