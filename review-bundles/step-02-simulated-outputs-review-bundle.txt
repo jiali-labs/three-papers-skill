@@ -1,0 +1,350 @@
+Step 02 Simulated Outputs Review Bundle
+=======================================
+
+Project: three-papers-skill
+Repository: https://github.com/jiali-labs/three-papers-skill.git
+Bundle path: review-bundles/step-02-simulated-outputs-review-bundle.txt
+
+1. Summary of changes
+---------------------
+
+Created realistic simulated Skill outputs for three required inputs:
+
+- 大语言模型: Mode A, high-confidence research field.
+- AI Agent: Mode C, emerging field with explicit caution that the canon is not fully settled.
+- 小红书运营: Mode D, not suitable for paper-first learning.
+
+Created:
+
+- examples/simulated-outputs.md
+
+Updated:
+
+- README.md
+
+Not changed:
+
+- SKILL.md
+
+Reason SKILL.md was not changed:
+
+- The existing Skill rules were sufficient for Step 02.
+- No inconsistency was found that prevented the simulated outputs from following the Skill behavior.
+
+No commit was created and nothing was pushed.
+
+2. Final file tree
+------------------
+
+Project files:
+
+three-papers-skill/
+  SKILL.md
+  README.md
+  examples/
+    simulated-outputs.md
+  tests/
+    test-cases.md
+  review-bundles/
+    step-01-initial-skill-review-bundle.txt
+    step-02-simulated-outputs-review-bundle.txt
+
+Additional local file observed:
+
+- .DS_Store is present as an untracked local file. It was not created or modified for this step.
+
+3. Git status
+-------------
+
+Status observed before creating this review bundle:
+
+## main...origin/main
+ M README.md
+?? .DS_Store
+?? examples/
+
+Expected status after this review bundle is added:
+
+## main...origin/main
+ M README.md
+?? .DS_Store
+?? examples/
+?? review-bundles/step-02-simulated-outputs-review-bundle.txt
+
+4. Remote origin
+----------------
+
+`git remote -v` output:
+
+origin  https://github.com/jiali-labs/three-papers-skill.git (fetch)
+origin  https://github.com/jiali-labs/three-papers-skill.git (push)
+
+Remote handling result:
+
+- origin already existed.
+- No remote add was needed.
+- No push was performed.
+
+5. Exact commands run
+---------------------
+
+Commands run in /Users/jia/Code/three-papers-skill unless noted otherwise:
+
+1. sed -n '1,260p' /Users/jia/.codex/skills/.system/skill-creator/SKILL.md
+2. pwd
+3. find . -maxdepth 3 -type f -not -path './.git/*' -print
+4. git status --short --branch
+5. git remote -v
+6. sed -n '1,260p' SKILL.md
+7. sed -n '1,220p' README.md
+8. apply_patch
+   - Created examples/simulated-outputs.md.
+   - Updated README.md with a pointer to examples/simulated-outputs.md.
+9. find . -maxdepth 3 -type f -not -path './.git/*' -print
+10. git status --short --branch
+11. git remote -v
+12. rg -n "Example 1|Example 2|Example 3|信息依据|公认经典|小红书运营|Self-assessment|simulated-outputs" README.md examples/simulated-outputs.md
+13. command -v markdownlint
+    - Result: no markdownlint executable found.
+14. rg -n "TODO|FIXME|TBD|待补|占位|lorem|待确认" README.md examples/simulated-outputs.md
+    - Result: no matches.
+15. wc -l README.md examples/simulated-outputs.md
+    - Result:
+      - 97 README.md
+      - 243 examples/simulated-outputs.md
+      - 340 total
+16. git diff -- README.md examples/simulated-outputs.md
+17. git diff --stat
+18. git diff -- SKILL.md
+    - Result: no output; SKILL.md unchanged.
+19. sed -n '1,260p' examples/simulated-outputs.md
+20. apply_patch
+    - Removed an unnecessary ACM-side note from the Generative Agents example to keep evidence disclosure simpler and better supported.
+21. rg -n "ACM|信息依据|公认经典|基于 arXiv" examples/simulated-outputs.md
+22. git diff -- README.md examples/simulated-outputs.md
+23. git status --short --branch
+24. apply_patch
+    - Created this review bundle.
+
+6. Source verification status
+-----------------------------
+
+Was web/source access available?
+
+Yes. Web/source checks were performed for the paper examples.
+
+Sources used:
+
+- Attention is All you Need
+  - NeurIPS Proceedings:
+    https://proceedings.neurips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html
+  - Verified: title, authors, NIPS 2017 source, official paper page.
+
+- Language Models are Few-Shot Learners
+  - NeurIPS Proceedings:
+    https://proceedings.neurips.cc/paper_files/paper/2020/hash/1457c0d6bfcb4967418bfb8ac142f64a-Abstract.html
+  - Verified: title, authors, NeurIPS 2020 source, official paper page.
+
+- Training Compute-Optimal Large Language Models
+  - arXiv:
+    https://arxiv.org/abs/2203.15556
+  - Verified: title, authors, submission date/year, arXiv page, PDF availability.
+
+- ReAct: Synergizing Reasoning and Acting in Language Models
+  - OpenReview:
+    https://openreview.net/forum?id=WE_vluYUL-X
+  - arXiv search/open result:
+    https://arxiv.org/abs/2210.03629
+  - Verified: title, authors, ICLR 2023/OpenReview source, publication metadata.
+
+- Toolformer: Language Models Can Teach Themselves to Use Tools
+  - arXiv:
+    https://arxiv.org/abs/2302.04761
+  - Verified: title, authors, submission date/year, arXiv page, PDF availability.
+
+- Generative Agents: Interactive Simulacra of Human Behavior
+  - arXiv:
+    https://arxiv.org/abs/2304.03442
+  - Verified: title, authors, submission/revision year, arXiv page, PDF availability.
+
+Evidence handling in the examples:
+
+- The examples do not claim real-time comprehensive literature review.
+- The examples do not claim that the papers were read line by line.
+- Each recommended paper includes an "信息依据" field.
+- Links are restricted to reliable source pages: NeurIPS Proceedings, arXiv, and OpenReview.
+
+7. Summary of the 3 simulated examples
+--------------------------------------
+
+Example 1: 大语言模型
+
+- Mode: Mode A.
+- Mainline: architecture / Transformer -> scaling and few-shot behavior -> data-compute balance.
+- Papers:
+  1. Attention is All you Need
+  2. Language Models are Few-Shot Learners
+  3. Training Compute-Optimal Large Language Models
+- User-facing effect:
+  - Clear for serious beginners.
+  - Shows why these three form a cognitive framework rather than just a famous-paper list.
+  - Long but trust-building.
+
+Example 2: AI Agent
+
+- Mode: Mode C.
+- Required caution included:
+  "这个方向还在快速发展中，严格意义上的公认经典还没有完全沉淀。"
+- Mainline: reasoning-action loop -> tool use -> memory/reflection/social behavior.
+- Papers:
+  1. ReAct: Synergizing Reasoning and Acting in Language Models
+  2. Toolformer: Language Models Can Teach Themselves to Use Tools
+  3. Generative Agents: Interactive Simulacra of Human Behavior
+- User-facing effect:
+  - Avoids overclaiming "universally accepted classics".
+  - Makes the emerging-field nature visible.
+  - Explains why some community-famous projects were not selected as the main paper path.
+
+Example 3: 小红书运营
+
+- Mode: Mode D.
+- No academic papers forced.
+- Reformulations suggested:
+  1. 社交推荐系统如何影响内容分发和用户点击？
+  2. UGC 社区中的用户行为、内容生产和互动机制如何形成？
+  3. 内容平台的创作者生态和平台增长机制可以如何研究？
+- User-facing effect:
+  - Respectfully refuses a paper-first path.
+  - Gives practical alternative learning materials.
+  - Gives a bridge back into an academic/technical version of the question.
+
+8. Self-assessment of output quality
+------------------------------------
+
+What works well:
+
+- The default structure makes mode selection, recommendation logic, and evidence disclosure visible.
+- The LLM example forms a coherent learning path rather than a citation-count list.
+- The AI Agent example clearly avoids saying the three papers are "公认经典".
+- The 小红书运营 example respects the user's practical intent while offering better academic reformulations.
+- "信息依据" makes anti-hallucination behavior visible in actual output.
+
+What feels too long:
+
+- The Mode A and Mode C examples are lengthy for casual Xiaohongshu consumption.
+- Full author lists and evidence notes add friction, but they are useful for trust.
+- The current format is more appropriate as a full answer than as a social/card post.
+
+Where hallucination risk remains:
+
+- "Why recommend" sections still contain expert judgment and should not be framed as definitive.
+- If future outputs discuss experimental details, they must verify the paper text more deeply.
+- AI Agent is evolving quickly, so representative-paper choices may need periodic updates.
+- Using "等" for long author lists improves readability but means the output is not a complete citation record.
+
+Whether a future short Xiaohongshu mode may be useful:
+
+- Yes. The full mode is useful for serious learning, but a shorter Xiaohongshu/card mode would likely help scanning and sharing.
+- A future short mode could keep:
+  - field judgment;
+  - 3-paper reading order;
+  - one-sentence reason per paper;
+  - compact source/evidence note;
+  - one next action.
+
+9. Known limitations
+--------------------
+
+- No Xiaohongshu short/card mode was implemented in this step, by request.
+- No automated output validation script was added.
+- markdownlint was not available locally.
+- The examples are simulated outputs, not a live Skill execution engine.
+- Source verification covered metadata and accessible source pages, not a full close reading of every paper.
+- .DS_Store remains untracked and unrelated.
+
+10. Open questions for reviewer
+-------------------------------
+
+- Is the full default format too long for the first release, or acceptable as the "serious learning" mode?
+- Should the future Xiaohongshu short mode be a separate explicit mode, or should the Skill choose it automatically when the user asks for 小红书/card/短版?
+- Should long author lists always use "等" for readability, or should the Skill provide complete citations by default?
+- Should examples eventually be split by mode into separate files if the example set grows?
+
+11. Diff / excerpts for review
+------------------------------
+
+README.md diff:
+
+```diff
++## 模拟输出
++
++Step 02 增加了 3 个完整模拟输出，用于评估默认输出结构是否适合新手阅读，以及未来是否需要单独的小红书短版/card 模式：
++
++- [examples/simulated-outputs.md](examples/simulated-outputs.md)
+```
+
+examples/simulated-outputs.md key excerpt:
+
+```markdown
+# 模拟输出示例
+
+这些内容是 Step 02 的模拟 Skill 输出，用于评估当前默认输出结构的真实阅读体验。  
+本文件中的论文标题、作者、年份/来源和链接已通过公开可靠页面做过元信息核验；但这些示例没有声称逐段阅读全文，也不代表实时文献综述。
+
+核验过的来源类型包括：NeurIPS Proceedings、arXiv、OpenReview。每篇论文仍在「信息依据」中单独披露依据级别。
+```
+
+大语言模型 excerpt:
+
+```markdown
+领域判断：  
+这是一个已有较清晰研究传统的方向，适合用 3 篇经典/代表性论文先建立认知框架。
+
+阅读顺序：
+
+1. Attention is All you Need
+2. Language Models are Few-Shot Learners
+3. Training Compute-Optimal Large Language Models
+
+这三篇连起来帮你建立的认知框架：
+
+- 大语言模型的底层架构核心：自注意力和 Transformer。
+- 大模型能力的一个关键转折：从「为每个任务微调」到「用提示和少量例子做任务」。
+- 训练大模型的现实约束：参数、数据、算力之间不是越大越好，而是要配比。
+```
+
+AI Agent excerpt:
+
+```markdown
+领域判断：  
+这个方向还在快速发展中，严格意义上的公认经典还没有完全沉淀。下面推荐的是 3 篇更适合建立当前认知框架的代表性论文。
+
+阅读顺序：
+
+1. ReAct: Synergizing Reasoning and Acting in Language Models
+2. Toolformer: Language Models Can Teach Themselves to Use Tools
+3. Generative Agents: Interactive Simulacra of Human Behavior
+```
+
+小红书运营 excerpt:
+
+```markdown
+这个主题不太适合直接推荐 3 篇经典论文。
+
+原因：  
+「小红书运营」更偏实践经验、平台规则、内容策略、账号定位和商业转化。它当然可以被学术研究解释一部分，但如果直接硬凑 3 篇经典论文，很容易变成把营销案例或平台观察包装成论文，反而误导你。
+
+你可以这样改写：
+
+1. 社交推荐系统如何影响内容分发和用户点击？
+2. UGC 社区中的用户行为、内容生产和互动机制如何形成？
+3. 内容平台的创作者生态和平台增长机制可以如何研究？
+```
+
+Self-assessment excerpt:
+
+```markdown
+### Whether a future short Xiaohongshu mode may be useful
+
+有必要。当前默认模式适合建立信任和做严肃入门，但对小红书用户来说可能略长。后续可以考虑增加一个「短/card 模式」，只保留领域判断、三篇阅读顺序、每篇一句推荐理由、证据提示和下一步行动，把完整解释作为展开版。
+```

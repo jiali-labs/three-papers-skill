@@ -39,6 +39,12 @@ Skill 名称：三篇论文入门
 - 小红书运营
 - 我想了解脑机接口，应该先读哪三篇论文？
 
+## 模拟输出
+
+Step 02 增加了 3 个完整模拟输出，用于评估默认输出结构是否适合新手阅读，以及未来是否需要单独的小红书短版/card 模式：
+
+- [examples/simulated-outputs.md](examples/simulated-outputs.md)
+
 ## 输出结构
 
 适合论文入门的主题会输出：
